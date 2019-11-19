@@ -47,6 +47,8 @@ namespace PlaceMyBet_backend.Controllers
             repo.Save(apuesta);
             Debug.WriteLine(apuesta.Id);
             repo.Update(apuesta.MercadoId);
+
+            //Console.log("Las apuestas de este usuario son: " + contarApuestas(apuesta.usuario));
         }
 
         // PUT: api/Apuesta/5

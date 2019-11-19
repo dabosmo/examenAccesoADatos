@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
+using System.Net.Http;
 using System.Web;
 
 namespace PlaceMyBet_backend.Models
@@ -159,7 +160,6 @@ namespace PlaceMyBet_backend.Models
                 connection.Open();
                 command.ExecuteNonQuery();
                 connection.Close();
-
             }
             catch (MySqlException e)
             {
@@ -249,5 +249,37 @@ namespace PlaceMyBet_backend.Models
 
             connection.Close();
         }
-    }
+        /*** Ejercicio 3 ***/ // Habria que modificar también el apuestacontroller añadiendo esta consulta en un console.log(contarApuestas())
+        /*internal int ContarApuestas(int idUsuario)
+        {
+            DataBase dato = new DataBase();
+            MySqlConnection connection = dato.db;
+            MySqlCommand comando = connection.CreateCommand();
+            comando.CommandText = "SELECT count(apuesta.id) FROM Apuesta WHERE apuesta.usuario = @idUser";
+            comando.Parameters.AddWithValue("@idUser", idUsuario);
+            try
+            {
+                connection.Open();
+                MySqlDataReader resultado = comando.ExecuteReader();
+                int num_apuestas;
+                while (resultado.Read())
+                {
+                    num_apuestas = resultado.GetInt32(0);
+                    
+
+                }
+                connection.Close();
+                
+
+
+            }
+            catch (MySqlException e)
+            {
+                Debug.WriteLine("Se ha producido un error al realizar la conexión");
+                return 3;
+            }
+
+
+        }*/
+    }    
 }
