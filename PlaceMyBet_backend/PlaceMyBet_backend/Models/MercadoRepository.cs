@@ -84,8 +84,12 @@ namespace PlaceMyBet_backend.Models
                 List<MercadoFor> mercados = new List<MercadoFor>();
                 while (resultado.Read())
                 {
-                    mercado = new MercadoFor(resultado.GetString(0), resultado.GetFloat(3), resultado.GetFloat(4), resultado.GetFloat(5), resultado.GetFloat(1), resultado.GetString(2));
-                    mercados.Add(mercado);
+                    if(resultado.GetFloat(5) >= 100)
+                    {
+                        mercado = new MercadoFor(resultado.GetString(0), resultado.GetFloat(3), resultado.GetFloat(4), resultado.GetFloat(5), resultado.GetFloat(1), resultado.GetString(2));
+                        mercados.Add(mercado);
+                    }
+                    
                 }
                 connection.Close();
 

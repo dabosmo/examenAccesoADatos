@@ -11,7 +11,7 @@ namespace PlaceMyBet_backend.Models
         public MySqlConnection db;
         public MySqlConnection Connect()
         {   
-            string connectString = "server=34.219.191.133; port=3306; Database=PlaceMyBet; uid= examen; password='examen'; SslMode=none";
+            string connectString = "server=localhost; port=3306; Database=PlaceMyBet; uid= root; password='abcde'; SslMode=none";
             MySqlConnection connection = new MySqlConnection(connectString);
             return connection;
         }

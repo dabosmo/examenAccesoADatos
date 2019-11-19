@@ -69,7 +69,45 @@ namespace PlaceMyBet_backend.Models
                 return null;
             }
         }
+        /*** Ejercicio 2 ***/
+        internal List<ApuestaExamen> RetrieveByIdMercado(int idMerc)
+        {
+            Debug.WriteLine("ENTRO EN ESTE MÉTODO");
 
+            DataBase dato = new DataBase();
+            MySqlConnection connection = dato.db;
+            MySqlCommand comando = connection.CreateCommand();
+            comando.CommandText = "SELECT apuesta.tipo, apuesta.cuota, apuesta.dinero FROM placemybet.Apuesta, placemybet.mercado WHERE mercado.id = @idMerc AND apuesta.mercado = mercado.id ";
+            comando.Parameters.AddWithValue("@idMerc", idMerc);
+
+            try
+            {
+                connection.Open();
+                MySqlDataReader resultado = comando.ExecuteReader();
+                ApuestaExamen apuesta = null;
+                List<ApuestaExamen> apuestas = new List<ApuestaExamen>();
+                while (resultado.Read())
+                {
+                    if(resultado.GetFloat(2) >= 100)
+                    {
+                        Debug.WriteLine("Recupero " + resultado.GetFloat(2) + " y " + (resultado.GetFloat(2) >= 100f));
+                        //Debug.WriteLine("Recuperado: " + resultado.GetString(0) + " " + resultado.GetFloat(1) + " " + resultado.GetFloat(2) + " ");
+                        apuesta = new ApuestaExamen(resultado.GetString(0), resultado.GetFloat(1), resultado.GetFloat(2));
+                        apuestas.Add(apuesta);
+                    }
+                    
+                }
+                connection.Close();
+
+                return apuestas;
+            }
+            catch (MySqlException e)
+            {
+                Debug.WriteLine("Se ha producido un error al realizar la conexión");
+                return null;
+            }
+        }
+        /*** Fin ejercicio 2 ***/
         internal List<ApuestaDTO> RetrieveByEmail(string email)
         {
             DataBase dato = new DataBase();

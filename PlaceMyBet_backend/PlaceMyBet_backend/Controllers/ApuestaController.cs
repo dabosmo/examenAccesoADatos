@@ -14,14 +14,26 @@ namespace PlaceMyBet_backend.Controllers
         // GET: api/Apuesta
         public IEnumerable<ApuestaDTO> Get()
         {
+            Debug.WriteLine("ENTRO EN EL OTRO");
             var repo = new ApuestaRepository();
             List<ApuestaDTO> todos = repo.RetrieveDTO();
             return todos;
         }
+        /*** Ejercicio 2 ***/
+        // GET: api/Apuesta?idMercado=16 el entero es la id del mercado
+        public IEnumerable<ApuestaExamen> Get(int idMercado)
+        {
+            Debug.WriteLine("ENTRO EN APUESTADS REPOSITORY");
+            var repository = new ApuestaRepository();
+            List<ApuestaExamen> apuestas = repository.RetrieveByIdMercado(idMercado);
+            return apuestas;
+        }
+        /*** Fin ejercicio 2 ***/
 
         // GET: api/Apuesta?email=emailvalido(p.ej daniel@gmail.com)
         public IEnumerable<ApuestaDTO> Get(string email)
         {
+            Debug.WriteLine("ENTRO EN EL OTRO");
             var repo = new ApuestaRepository();
             List<ApuestaDTO> apuestas = repo.RetrieveByEmail(email);
             return apuestas;

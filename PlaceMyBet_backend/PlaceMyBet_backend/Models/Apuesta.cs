@@ -67,4 +67,24 @@ namespace PlaceMyBet_backend.Models
             Importe = importe;
         }
     }
+    /*** Ejercicio 2 ***/
+    public class ApuestaExamen{
+        
+        private string _tipo;
+        private float _cuota;
+        private float _importe;
+
+        public string Tipo { get => _tipo; set => _tipo = value; }
+        public float Cuota { get => _cuota; set => _cuota = value; }
+        public float Importe { get => _importe; set => _importe = value; }
+
+        public ApuestaExamen (string tipo, float cuota, float importe)
+        {
+            Tipo = tipo;
+            Cuota = cuota;
+            Importe = importe;
+        }
+        
+    }
+    /*** Fin ejercicio 2 ***/
 }
